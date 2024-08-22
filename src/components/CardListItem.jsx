@@ -1,10 +1,8 @@
 export default function CardListItem({ card }) {
     return (
-        <div className='border border-gray-300 rounded-lg p-2 m-2 flex justify-between'>
-            <div>
-                <h2>{card.name}</h2>
-                <p>{card.types}</p>
-            </div>
+        <div className='border border-slate-600 rounded-lg flex justify-between'>
+            <p>{card.name}</p>
+            <p>{card.types}</p>
         </div>
     )
 }
