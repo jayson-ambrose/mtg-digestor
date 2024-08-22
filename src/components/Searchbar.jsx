@@ -9,6 +9,7 @@ export default function Searchbar({ runSearch }) {
     e.preventDefault()
     console.log(searchCritera, query)
     runSearch(searchCritera, query)
+    setQuery('')
   }
 
   const handleChangeSearchCriteria = (e) => {
@@ -20,7 +21,7 @@ export default function Searchbar({ runSearch }) {
   }
 
   return (
-    <div className='flex justify-center'>
+    <form className='flex justify-center'>
       <select onChange={handleChangeSearchCriteria}>
         <option value=''>Name</option>
         <option value='s:'>Set</option>
@@ -29,13 +30,15 @@ export default function Searchbar({ runSearch }) {
         <option value='a:'>Artist</option>
       </select>
       <input
+        type='text'
         className='border border-gray-300 rounded-lg p-2'
-        placeholder='Search for a card...'
+        placeholder={'Search for a card...'}
         onChange={handleChangeQuery}
-      />        
+        value={query}
+        />        
       <button onClick={(e) => handleClick(e)} className='bg-blue-500 text-white rounded-lg p-2 ml-2'>
         Search
       </button>
-    </div>
+    </form>
     )
 }

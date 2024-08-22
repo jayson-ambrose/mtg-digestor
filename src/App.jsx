@@ -3,11 +3,14 @@ import { getCards } from './helpers/apiCalls'
 import Searchbar from './components/Searchbar'
 import CardList from './components/CardList'
 import CardListItem from './components/CardListItem'
+import CardImageArea from './components/CardImageArea'
+import CardImage from './components/CardImage'
 
 function App() {
 
   const [cardList, setCardList] = useState([])
   const [loading, setLoading] = useState(false)
+  const [targettedCard, setTargettedCard] = useState(null)
 
   const runSearch = async (searchCritera, query) => {
     setLoading(true)    
@@ -16,16 +19,25 @@ function App() {
     setLoading(false)
     })
   }
+
+  const targetCard = async (card) => {
+    setTargettedCard(card)
+  }
   
   return (
     <>
-      <h1 className='font-2xl'>MTG API DIGESTER</h1>
+      <h1 className='text-4xl'>MTG API DIGESTER</h1>
       <Searchbar runSearch={runSearch}/>
-      <CardList>
-        {loading ? <p>Loading...</p> : cardList?.map((card, index) => (
-          <CardListItem key={index} card={card} />
-        ))}
-      </CardList>
+      <div className='flex'>
+        <CardList>
+          {loading ? <p>Loading...</p> : cardList?.map((card, index) => (
+            <CardListItem key={index} card={card} targetCard={targetCard}/>
+          ))}
+        </CardList>
+        <CardImageArea>
+          {targettedCard ? <CardImage card={targettedCard}/>: null}
+        </CardImageArea>
+      </div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 export default function CardImageArea ({ children }) {
 
     return(
-        <div className="flex justify-center align-center">
+        <div className="flex w-1/2 justify-center align-center">
             {children}
         </div>
     )
