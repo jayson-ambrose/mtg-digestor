@@ -5,6 +5,7 @@ import CardList from './components/CardList'
 import CardListItem from './components/CardListItem'
 import CardImageArea from './components/CardImageArea'
 import CardImage from './components/CardImage'
+import CardImageDF from './components/CardImageDF'
 
 function App() {
 
@@ -23,10 +24,17 @@ function App() {
   const targetCard = async (card) => {
     setTargettedCard(card)
   }
+
+  const checkDoubleFaced = (card) => {
+    if (card.card_faces) {
+      return <CardImageDF card={card}/>
+    }
+    return <CardImage card={card}/>
+  }
   
   return (
     <>
-      <h1 className='text-4xl'>MTG API DIGESTER</h1>
+      <h1 className='text-4xl'>SCRYFALL MTG API DIGESTOR</h1>
       <Searchbar runSearch={runSearch}/>
       <div className='flex'>
         <CardList>
@@ -35,7 +43,7 @@ function App() {
           ))}
         </CardList>
         <CardImageArea>
-          {targettedCard ? <CardImage card={targettedCard}/>: null}
+          {targettedCard ? checkDoubleFaced(targettedCard): null}
         </CardImageArea>
       </div>
     </>
